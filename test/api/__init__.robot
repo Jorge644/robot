@@ -3,6 +3,7 @@ Suite Setup       Set environment for execution
 Library    OperatingSystem   
 Library    ../../env/lib/site-packages/robot/libraries/Collections.py
 Library    RequestsLibrary
+Library    ../../env/lib/site-packages/JSONLibrary/JSONLibrary.py
 
 
 *** Variables ***
@@ -12,7 +13,7 @@ ${error_environment_message}    Could initialize resources environment, set envi
 Set environment for execution 
 
     ${file}    Get File    ${EXECDIR}\\resources\\environment.json  
-    ${env}    To Json    ${file}
+    ${env}    Convert String To Json    json_string=${file}
     ${env}    Get From Dictionary    ${env}    environment
 
     Run Keyword If    '${env}'=='development'    Set environment helper    dev
